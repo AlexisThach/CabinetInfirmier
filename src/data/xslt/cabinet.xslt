@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-                xmlns:ci="http://www.ujf-grenoble.fr/l3miage/medical"
-                xmlns:act="http://www.ujf-grenoble.fr/l3miage/actes">
+                xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+                xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes">
     <xsl:output method="html"/>
 
     <xsl:param name="destinedId" select="001"/>
@@ -19,7 +19,7 @@
             <body>
                 <div class="header">
                     <!-- Insertion de l'image de l'infirmière -->
-                    <img src="../images/" alt="Photo" class="infirmiere-photo"/>
+                    <img src="../img/frechie.png" alt="Photo" class="infirmiere-photo"/>
 
                     <!-- Titre de la page centré -->
                     <h1 class="title"><xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></h1>
@@ -32,18 +32,18 @@
                 </xsl:template>                
                 <!-- Début du tableau -->
                 <table border="1">
-                    <thead>
+                    <head>
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Adresse</th>
                             <th>Soin(s) à effectuer</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    </head>
+                    <body>
                         <!-- Afficher chaque patient -->
                         <xsl:apply-templates select="//ci:patient[ci:visite[@intervenant=$destinedId]]" />
-                    </tbody>
+                    </body>
                 </table>
                 <!-- Fin du tableau -->
 
@@ -71,7 +71,9 @@
 
     <!--Template visite : Affichez la date de la visite, puis les actes associés-->
     <xsl:template match="ci:visite">
-        Visite du <xsl:value-of select="@date"/><br/>
+        Visite du <xsl:value-of select="@date"/>
+        <br/>
+        <br/>
         <xsl:apply-templates select="ci:acte"/>
     </xsl:template>
 

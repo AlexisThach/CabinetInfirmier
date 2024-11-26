@@ -2,8 +2,8 @@
 
 <xs:schema version="1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.ujf-grenoble.fr/l3miage/medical"
-           xmlns:ci="http://www.ujf-grenoble.fr/l3miage/medical"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+           xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
            elementFormDefault="qualified">
     
     <!-- Élément racine qui est le cabinet avec le type "Cabinet"   -->

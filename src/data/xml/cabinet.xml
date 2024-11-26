@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../xslt/cabinet.xslt"?>
 
-<cabinet xmlns="http://www.ujf-grenoble.fr/l3miage/medical"
-         xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
-         xs:schemaLocation="http://www.ujf-grenoble.fr/l3miage/medical ../xsd/cabinet.xsd">
+<cabinet xmlns="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
 
     
     <!--Racine du document cabinet.xml-->

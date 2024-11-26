@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-                xmlns:ci="http://www.ujf-grenoble.fr/l3miage/medical"
-                xmlns:act="http://www.ujf-grenoble.fr/l3miage/actes"
+                xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+                xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
     <xsl:output method="xml"/>
     
@@ -14,7 +14,7 @@
 
     <xsl:template match="/">
         <ci:patient>
-            <xsl:attribute name="xs:schemaLocation">http://www.ujf-grenoble.fr/l3miage/medical ../xsd/patient.xsd</xsl:attribute>
+            <xsl:attribute name="xs:schemaLocation">http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/patient.xsd</xsl:attribute>
             <xsl:apply-templates select="//ci:patient[ci:nom=$destinedName]"/>
         </ci:patient>
     </xsl:template>
