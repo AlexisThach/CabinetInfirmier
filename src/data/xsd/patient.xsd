@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:pa="http://www.ujf-grenoble.fr/l3miage/medical"
+           targetNamespace="http://www.ujf-grenoble.fr/l3miage/medical"
+           elementFormDefault="qualified">
+
+    <!-- Définition de l'élément "patient" avec le type "Patient" -->
+    <xs:element name="patient" type="pa:Patient"/>
+
+    <!-- Définition du type complexe "Patient" -->
+    <xs:complexType name="Patient">
+        <xs:sequence>
+            <xs:element name="nom" type="pa:NomPatient" minOccurs="1"/>
+            <xs:element name="prénom" type="pa:NomPatient" minOccurs="1"/>
+            <xs:element name="sexe" type="pa:Sexe" minOccurs="1"/>
+            <xs:element name="naissance" type="xs:date" minOccurs="1"/>
+            <xs:element name="numéro" type="pa:NIR" minOccurs="1"/>
+            <xs:element name="adresse" type="pa:Adresse" minOccurs="1"/>
+            <xs:element name="visite" type="pa:Visite" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type NomPatient restrictif qui doit contenir que des lettres, peut avoir des accents, caractères spéciaux 
+     tels que le tiret, apostrophe et aussi des espaces -->
+    <xs:simpleType name="NomPatient">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-zÀ-ÿ .'-]+"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Le type simple Sexe avec deux valeurs "M" et "F" -->
+    <xs:simpleType name="Sexe">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="F"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Le type simple NIR (numéro de sécurité sociale) -->
+    <xs:simpleType name="NIR">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[12]\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-9]\d|2A|2B|99)\d{3}\d{3}\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Type complexe pour l'adresse -->
+    <xs:complexType name="Adresse">
+        <xs:sequence>
+            <xs:element name="etage" type="xs:string" minOccurs="0"/>
+            <xs:element name="numero" type="xs:string" minOccurs="0"/>
+            <xs:element name="rue" type="xs:string" minOccurs="1"/>
+            <xs:element name="codePostal" type="pa:CodePostal" minOccurs="1"/>
+            <xs:element name="ville" type="xs:string" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- Type CodePostal est une restriction sur les codes postaux français -->
+    <xs:simpleType name="CodePostal">
+        <xs:restriction base="xs:string">
+            <!-- deux alternatives séparés par le pipe "|": 
+                 1 - départements 01 à 09 
+                 2 - départements 10 à 98 -->
+            <xs:pattern value="0[1-9]\d{3}|[1-9]\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Type complexe pour les visites -->
+    <xs:complexType name="Visite">
+        <xs:sequence>
+            <xs:element name="intervenant" type="pa:Intervenant" minOccurs="1"/>
+            <xs:element name="acte" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="date" type="xs:date" use="required"/>
+    </xs:complexType>
+    
+    <!-- Type complexe "Intervenant" -->
+    <xs:complexType name="Intervenant">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string" minOccurs="1"/>
+            <xs:element name="prénom" type="xs:string" minOccurs="1"/>
+        </xs:sequence>
+
+    </xs:complexType>
+
+</xs:schema>
