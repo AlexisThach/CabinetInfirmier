@@ -65,8 +65,7 @@ table tr:nth-child(even) {
     color: white;
     padding: 10px 15px;
     border: none;
-    text-align: center;
-    display: inline-block;
+    display: flex;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -75,10 +74,6 @@ table tr:nth-child(even) {
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #38813b;
 }
 
-/* Ajout d'espace entre les boutons dans une même cellule */
-table td button + button {
-    margin-left: 10px;
-}

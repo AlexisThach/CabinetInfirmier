@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ngap
         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-        xmlns:act='http://www.ujf-grenoble.fr/l3miage/actes'
-        xsi:schemaLocation='http://www.ujf-grenoble.fr/l3miage/actes ../xsd/actes.xsd'>
+        xmlns='http://www.ujf-grenoble.fr/l3miage/actes'
+        xsi:schemaLocation='http://www.ujf-grenoble.fr/l3miage/actes ../schema/actes.xsd'>
 
     <types>
         <type id="pi">prélèvements et injections</type>
@@ -29,7 +29,7 @@
         </acte>
         <acte id="104" type="pi" clé="AMI" coef="2">
             Inection intraveineuse directe isolée.
-        </acte> 
+        </acte>
         <acte id="105" type="pi" clé="AMI" coef="1.5">
             Injection intraveineuse directe en série.
         </acte>

@@ -14,23 +14,7 @@
             <head>
                 <title>Infirmier <xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></title>
                 <link rel="stylesheet" type="text/css" href="../css/infirmiers.css" />
-                <script type="text/javascript"> 
-                    function openFacture(prenom, nom, actes) {
-                    var width  = 500;
-                    var height = 300;
-                    if(window.innerWidth) {
-                    var left = (window.innerWidth-width)/2;
-                    var top = (window.innerHeight-height)/2;
-                    }
-                    else {
-                    var left = (document.body.clientWidth-width)/2;
-                    var top = (document.body.clientHeight-height)/2;
-                    }
-                    var factureWindow = window.open('','facture','menubar=yes, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
-                    factureText = "Facture pour : " + prenom + " " + nom + " " + actes;
-                    factureWindow.document.write(factureText);
-                    }
-                </script>
+                <script type="text/javascript" src="../js/facture.js"></script>
             </head>
             <body>
                 <div class="header">
@@ -53,7 +37,7 @@
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Adresse</th>
-                            <th>Acte de Visite</th>
+                            <th>Soin(s) à effectuer</th>
                         </tr>
                     </thead>
                     <tbody>
