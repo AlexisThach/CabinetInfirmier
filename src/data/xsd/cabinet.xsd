@@ -23,7 +23,7 @@
     <xs:complexType name="Adresse">
         <xs:sequence>
             <xs:element name="etage" type="xs:string" minOccurs="0"/>
-            <xs:element name="numero" type="xs:string" minOccurs="0"/>
+            <xs:element name="numéro" type="xs:string" minOccurs="0"/>
             <xs:element name="rue" type="xs:string" minOccurs="1"/>
             <xs:element name="codePostal" type="ci:CodePostal" minOccurs="1"/>
             <xs:element name="ville" type="xs:string" minOccurs="1"/>
@@ -47,7 +47,7 @@
             <xs:element name="prénom" type="xs:string" minOccurs="1"/>
             <xs:element name="photo" type="ci:Photo" minOccurs="1"/>
         </xs:sequence>
-        <!-- Attribut "id" pour l'identifiant de l'infirmier, requis -->
+        <!-- Attribut "id" pour l'identifiant de l'infirmier -->
         <xs:attribute name="id" type="ci:Id" use="required"/>
     </xs:complexType>
 
@@ -68,7 +68,7 @@
             <xs:element name="prénom" type="ci:NomPatient" minOccurs="1"/>
             <xs:element name="sexe" type="ci:Sexe" minOccurs="1"/>
             <xs:element name="naissance" type="xs:date" minOccurs="1"/>
-            <xs:element name="numéro" type="ci:NIR" minOccurs="1"/>
+            <xs:element name="numéroSS" type="ci:NIR" minOccurs="1"/>
             <xs:element name="adresse" type="ci:Adresse" minOccurs="1"/>
             <xs:element name="visite" type="ci:Visite" minOccurs="1"/>
         </xs:sequence>

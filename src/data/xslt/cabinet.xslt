@@ -29,21 +29,19 @@
                 <xsl:template match="ci:infirmier">
                     Bonjour <xsl:value-of select='//ci:infirmier[@id=$destinedId]/ci:nom'/>,<br/>
                     <p>Aujourd'hui, vous avez <xsl:value-of select="$visiteDuJour"/> patients.<br/></p>
-                </xsl:template>                
+                </xsl:template>        
+                
                 <!-- Début du tableau -->
                 <table border="1">
-                    <head>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Adresse</th>
-                            <th>Soin(s) à effectuer</th>
-                        </tr>
-                    </head>
-                    <body>
-                        <!-- Afficher chaque patient -->
-                        <xsl:apply-templates select="//ci:patient[ci:visite[@intervenant=$destinedId]]" />
-                    </body>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Adresse</th>
+                        <th>Soin(s) à effectuer</th>
+                    </tr>
+                    <!-- Afficher chaque patient -->
+                    <xsl:apply-templates select="//ci:patient[ci:visite[@intervenant=$destinedId]]" />
+                    
                 </table>
                 <!-- Fin du tableau -->
 
@@ -51,13 +49,21 @@
         </html>
     </xsl:template>
 
-    <!--Template pour afficher les informations du patient dans le tableau-->
+    <!--Template pour afficher les informations du patient telles que le nom, prénom, adresse et 
+        son acte de visite dans le tableau-->
+    
     <xsl:template match="ci:patient">
         <tr>
             <td><xsl:value-of select="ci:nom"/></td>
             <td><xsl:value-of select="ci:prénom"/></td>
             <td>
-                <xsl:value-of select="ci:adresse/ci:etage"/>
+                <xsl:choose>
+                    <xsl:when test="ci:adresse/ci:etage">
+                        <xsl:text>Étg n°</xsl:text>
+                        <xsl:value-of select="ci:adresse/ci:etage"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                </xsl:choose>
                 <xsl:value-of select="ci:adresse/ci:numéro"/>,
                 <xsl:value-of select="ci:adresse/ci:rue"/>,
                 <xsl:value-of select="ci:adresse/ci:ville"/>,
@@ -69,7 +75,7 @@
         </tr>
     </xsl:template>
 
-    <!--Template visite : Affichez la date de la visite, puis les actes associés-->
+    <!--Template visite : Affiche la date de la visite, puis les actes associés -->
     <xsl:template match="ci:visite">
         Visite du <xsl:value-of select="@date"/>
         <br/>
@@ -77,7 +83,7 @@
         <xsl:apply-templates select="ci:acte"/>
     </xsl:template>
 
-    <!--Template Acte : Affichez l'acte en fonction de l'ID dans le fichier actes.xml-->
+    <!--Template Acte : Affiche l'acte en fonction de l'ID dans le fichier actes.xml-->
     <xsl:template match="ci:acte">
         <xsl:variable name="id" select="@id"/>
         <xsl:variable name="nom" select="../../ci:nom"/>

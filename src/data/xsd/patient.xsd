@@ -16,7 +16,7 @@
             <xs:element name="prénom" type="pa:NomPatient" minOccurs="1"/>
             <xs:element name="sexe" type="pa:Sexe" minOccurs="1"/>
             <xs:element name="naissance" type="xs:date" minOccurs="1"/>
-            <xs:element name="numéro" type="pa:NIR" minOccurs="1"/>
+            <xs:element name="numéroSS" type="pa:NIR" minOccurs="1"/>
             <xs:element name="adresse" type="pa:Adresse" minOccurs="1"/>
             <xs:element name="visite" type="pa:Visite" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -54,7 +54,7 @@
     <xs:complexType name="Adresse">
         <xs:sequence>
             <xs:element name="etage" type="xs:string" minOccurs="0"/>
-            <xs:element name="numero" type="xs:string" minOccurs="0"/>
+            <xs:element name="numéro" type="xs:string" minOccurs="0"/>
             <xs:element name="rue" type="xs:string" minOccurs="1"/>
             <xs:element name="codePostal" type="pa:CodePostal" minOccurs="1"/>
             <xs:element name="ville" type="xs:string" minOccurs="1"/>

@@ -4,10 +4,10 @@
                 xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
                 xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
-    <xsl:output method="xml"/>
+    <xsl:output method="xml" indent="yes"/>
     
-    <xsl:param name="destinedName">Alécole</xsl:param>
-
+    <xsl:param name="destinedName" select="'Alécole'" />
+    
     <!-- Template principale : Produire un document XML à partir des fichiers XML acte.xml 
    et cabinet.xml. On commence par ouvrir une balise "patient" et on sélectionne le patient recherché 
    en utilisant un chemin XPath spécifié. -->
@@ -29,8 +29,10 @@
         <ci:prénom><xsl:value-of select="ci:prénom"/></ci:prénom>
         <ci:sexe><xsl:value-of select="ci:sexe"/></ci:sexe>
         <ci:naissance><xsl:value-of select="ci:naissance"/></ci:naissance>
-        <ci:numéro><xsl:value-of select="ci:numéro"/></ci:numéro>
+        <ci:numéroSS><xsl:value-of select="ci:numéroSS"/></ci:numéroSS>
         <ci:adresse>
+            <ci:etage><xsl:value-of select="ci:adresse/ci:etage"/></ci:etage>
+            <ci:numéro><xsl:value-of select="ci:adresse/ci:numéro"/></ci:numéro>
             <ci:rue><xsl:value-of select="ci:adresse/ci:rue"/></ci:rue>
             <ci:codePostal><xsl:value-of select="ci:adresse/ci:codePostal"/></ci:codePostal>
             <ci:ville><xsl:value-of select="ci:adresse/ci:ville"/></ci:ville>
@@ -49,9 +51,9 @@
         <ci:visite>
             <xsl:attribute name="date"><xsl:value-of select="@date"/></xsl:attribute>
             <ci:intervenant>
-                <!-- On stocke l'id de l'infirmier dans une variable-->
-                <xsl:variable name="destinedId" select="@intervenant"/>
                 
+                <xsl:variable name="destinedId" select="@intervenant"/>
+
                 <ci:nom><xsl:value-of select="//ci:infirmier[@id=$destinedId]/ci:nom"/></ci:nom>
                 <ci:prénom><xsl:value-of select="//ci:infirmier[@id=$destinedId]/ci:prénom"/></ci:prénom>
             </ci:intervenant>
@@ -72,9 +74,7 @@
         <xsl:variable name="actes" select="document('actes.xml', /)/act:ngap/act:actes/act:acte[@id=$idActe]"/>
         
         <!-- Affichage de la description pour chaque acte-->
-        <ci:acte>
-            <xsl:value-of select="$actes"/>
-        </ci:acte>
+        <ci:acte><xsl:value-of select="$actes"/></ci:acte>
 
     </xsl:template>
 
