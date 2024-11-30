@@ -18,10 +18,7 @@
             </head>
             <body>
                 <div class="header">
-                    <!-- Insertion de l'image de l'infirmière -->
                     <img src="../img/frechie.png" alt="Photo" class="infirmiere-photo"/>
-
-                    <!-- Titre de la page centré -->
                     <h1 class="title"><xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></h1>
                 </div>
 
@@ -39,12 +36,9 @@
                         <th>Adresse</th>
                         <th>Soin(s) à effectuer</th>
                     </tr>
-                    <!-- Afficher chaque patient -->
+                    <!-- Afficher chaque patient dont l'infirmier est le destinataire -->
                     <xsl:apply-templates select="//ci:patient[ci:visite[@intervenant=$destinedId]]" />
-                    
                 </table>
-                <!-- Fin du tableau -->
-
             </body>
         </html>
     </xsl:template>

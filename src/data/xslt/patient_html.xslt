@@ -13,33 +13,27 @@
         <html>
             <head>
                 <title>Patient <xsl:value-of select='concat(//ci:patient/ci:nom, " ", //ci:patient/ci:prénom)'/></title>
-                
-                <!-- TODO CREER PATIENT.CSS -->
                 <link rel="stylesheet" type="text/css" href="../css/patient.css" /> 
             </head>
             <body>
-                
                 <div class="header">
                     <img src="../img/patient.png" alt="Photo" class="patient-photo"/>
                     <h1 class="title"><xsl:value-of select='concat(//ci:patient/ci:nom, " ", //ci:patient/ci:prénom)'/></h1>
                 </div>
-                
                 <table border="1">
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Sexe</th>
                         <th>Naissance</th>
-                        <th>Numéro</th>
+                        <th>N° sécurité sociale</th>
                         <th>Adresse</th>
                         <th>Visite</th>
                     </tr>
                     <xsl:apply-templates select="//ci:patient"/>
-                    
                 </table>
             </body>
         </html>
-        
     </xsl:template>
     
     <xsl:template match="ci:patient">
@@ -66,11 +60,10 @@
             </td>
         </tr>
     </xsl:template>
+    
     <xsl:template match="ci:visite">
         <xsl:value-of select="@date"/>
         <xsl:value-of select="ci:acte"/>
-        <xsl:value-of select="concat(' ', ci:intervenant/ci:nom, ' ', ci:intervenant/ci:prénom)"/>
-        
+        <xsl:value-of select="concat('par ', ci:intervenant/ci:nom, ' ', ci:intervenant/ci:prénom)"/>
     </xsl:template>
-    
 </xsl:stylesheet>
