@@ -13,8 +13,8 @@
         <html>
             <head>
                 <title>Infirmier <xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></title>
-                <link rel="stylesheet" type="text/css" href="../css/infirmiers.css" />
-                <script type="text/javascript" src="../js/facture.js"></script>
+                <link rel="stylesheet" type="text/css" href="../css/infirmierPage.css" />
+                <script type="text/javascript" src="../js/buttonScript.js"></script>
             </head>
             <body>
                 <div class="header">
@@ -45,22 +45,34 @@
 
     <!--Template pour afficher les informations du patient telles que le nom, prénom, adresse et 
         son acte de visite dans le tableau-->
-    
+
     <xsl:template match="ci:patient">
         <tr>
             <td><xsl:value-of select="ci:nom"/></td>
             <td><xsl:value-of select="ci:prénom"/></td>
             <td>
+                <!-- Adresse avec gestion des virgules -->
                 <xsl:choose>
+                    <!-- Si l'étage est présent -->
                     <xsl:when test="ci:adresse/ci:etage">
                         <xsl:text>Étg n°</xsl:text>
                         <xsl:value-of select="ci:adresse/ci:etage"/>
-                        <xsl:text> </xsl:text>
+                        <xsl:text>, </xsl:text>
                     </xsl:when>
                 </xsl:choose>
-                <xsl:value-of select="ci:adresse/ci:numéro"/>,
-                <xsl:value-of select="ci:adresse/ci:rue"/>,
-                <xsl:value-of select="ci:adresse/ci:ville"/>,
+                
+                <xsl:choose>
+                    <!-- Si le numéro de rue est présent -->
+                    <xsl:when test="ci:adresse/ci:numéro">
+                        <xsl:value-of select="ci:adresse/ci:numéro"/>
+                        <xsl:text>, </xsl:text>
+                    </xsl:when>
+                </xsl:choose>
+                
+                <xsl:value-of select="ci:adresse/ci:rue"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="ci:adresse/ci:ville"/>
+                <xsl:text>, </xsl:text>
                 <xsl:value-of select="ci:adresse/ci:codePostal"/>
             </td>
             <td>
@@ -68,7 +80,7 @@
             </td>
         </tr>
     </xsl:template>
-
+    
     <!--Template visite : Affiche la date de la visite, puis les actes associés -->
     <xsl:template match="ci:visite">
         Visite du <xsl:value-of select="@date"/>

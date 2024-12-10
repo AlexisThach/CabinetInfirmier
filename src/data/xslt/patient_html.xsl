@@ -3,7 +3,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
                 xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
                 xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes">
-    <xsl:output method="html"/>
+    <xsl:output method="html" indent="yes"/>
     
     <!-- Réaliser une feuille XSLT qui transforme alecole.xml en une
          page html alecole.html présentant les renseignements voulus. -->
@@ -13,7 +13,7 @@
         <html>
             <head>
                 <title>Patient <xsl:value-of select='concat(//ci:patient/ci:nom, " ", //ci:patient/ci:prénom)'/></title>
-                <link rel="stylesheet" type="text/css" href="../css/patient.css" /> 
+                <link rel="stylesheet" type="text/css" href="../css/pagePatient.css" /> 
             </head>
             <body>
                 <div class="header">
