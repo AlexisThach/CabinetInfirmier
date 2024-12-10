@@ -31,7 +31,7 @@
         <ci:naissance><xsl:value-of select="ci:naissance"/></ci:naissance>
         <ci:numéroSS><xsl:value-of select="ci:numéroSS"/></ci:numéroSS>
         <ci:adresse>
-            <ci:etage><xsl:value-of select="ci:adresse/ci:etage"/></ci:etage>
+            <ci:étage><xsl:value-of select="ci:adresse/ci:étage"/></ci:étage>
             <ci:numéro><xsl:value-of select="ci:adresse/ci:numéro"/></ci:numéro>
             <ci:rue><xsl:value-of select="ci:adresse/ci:rue"/></ci:rue>
             <ci:codePostal><xsl:value-of select="ci:adresse/ci:codePostal"/></ci:codePostal>

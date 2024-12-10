@@ -45,7 +45,7 @@
             <naissance>1998-08-02</naissance>
             <numéroSS>198082205545252</numéroSS>
             <adresse>
-                <etage>6</etage>
+                <étage>6</étage>
                 <numéro>50</numéro>
                 <rue>avenue Félix Viallet</rue>
                 <codePostal>38031</codePostal>

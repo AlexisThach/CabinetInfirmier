@@ -53,7 +53,7 @@
     <!-- Type complexe pour l'adresse -->
     <xs:complexType name="Adresse">
         <xs:sequence>
-            <xs:element name="etage" type="xs:string" minOccurs="0"/>
+            <xs:element name="étage" type="xs:string" minOccurs="0"/>
             <xs:element name="numéro" type="xs:string" minOccurs="0"/>
             <xs:element name="rue" type="xs:string" minOccurs="1"/>
             <xs:element name="codePostal" type="pa:CodePostal" minOccurs="1"/>

@@ -8,10 +8,11 @@
     <xsl:param name="destinedId" select="001"/>
     <xsl:variable name="visiteDuJour" select="count(//ci:patient/ci:visite[@intervenant=$destinedId])"/>
     <xsl:variable name="actes" select="document('../xml/actes.xml', /)/act:ngap"/>
-
+    
     <xsl:template match="/">
         <html>
             <head>
+                <meta charset="UTF-8"/>
                 <title>Infirmier <xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></title>
                 <link rel="stylesheet" type="text/css" href="../css/infirmierPage.css" />
                 <script type="text/javascript" src="../js/buttonScript.js"></script>
@@ -21,12 +22,10 @@
                     <img src="../img/frechie.png" alt="Photo" class="infirmiere-photo"/>
                     <h1 class="title"><xsl:value-of select='concat(//ci:infirmier[@id=$destinedId]/ci:nom, " ", //ci:infirmier[@id=$destinedId]/ci:prénom)'/></h1>
                 </div>
-
+                
                 <!-- Message de bienvenue -->
-                <xsl:template match="ci:infirmier">
-                    Bonjour <xsl:value-of select='//ci:infirmier[@id=$destinedId]/ci:nom'/>,<br/>
-                    <p>Aujourd'hui, vous avez <xsl:value-of select="$visiteDuJour"/> patients.<br/></p>
-                </xsl:template>        
+                Bonjour <xsl:value-of select='//ci:infirmier[@id=$destinedId]/ci:nom'/>,<br/>
+                <p>Aujourd'hui, vous avez <xsl:value-of select="$visiteDuJour"/> patients.<br/></p>
                 
                 <!-- Début du tableau -->
                 <table border="1">
@@ -54,9 +53,9 @@
                 <!-- Adresse avec gestion des virgules -->
                 <xsl:choose>
                     <!-- Si l'étage est présent -->
-                    <xsl:when test="ci:adresse/ci:etage">
+                    <xsl:when test="ci:adresse/ci:étage">
                         <xsl:text>Étg n°</xsl:text>
-                        <xsl:value-of select="ci:adresse/ci:etage"/>
+                        <xsl:value-of select="ci:adresse/ci:étage"/>
                         <xsl:text>, </xsl:text>
                     </xsl:when>
                 </xsl:choose>

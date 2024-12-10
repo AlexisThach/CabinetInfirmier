@@ -45,7 +45,7 @@
             <td><xsl:value-of select="ci:numéroSS"/></td>
             <td>
                 <xsl:text>Étg n°</xsl:text>
-                <xsl:value-of select="ci:adresse/ci:etage"/>
+                <xsl:value-of select="ci:adresse/ci:étage"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="ci:adresse/ci:numéro"/>
                 <xsl:text>, </xsl:text>
