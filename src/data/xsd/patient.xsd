@@ -17,7 +17,7 @@
             <xs:element name="prénom" type="pa:NomPatient" minOccurs="1" maxOccurs="1"/>
             <xs:element name="sexe" type="pa:Sexe" minOccurs="1" maxOccurs="1"/>
             <xs:element name="naissance" type="xs:date" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="numéroSS" type="pa:NIR" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="numéro" type="pa:NIR" minOccurs="1" maxOccurs="1"/>
             <xs:element name="adresse" type="pa:Adresse" minOccurs="1" maxOccurs="1"/>
             <xs:element name="visite" type="pa:Visite" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>

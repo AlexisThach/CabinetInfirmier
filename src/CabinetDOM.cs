@@ -47,12 +47,7 @@ public class CabinetDOM {
         return false;
     }
     
-    // Utilisez DOM pour ajouter un infirmier dont l’id sera 005. Il s’appelle Némard Jean. Vous écrirez une
-    // fonction générique d’ajout d’infirmiers qui prend comme paramètre le nom et le prénom de l’infirmier.
-    // le nom de sa photo est généré automatiquement (prenom.png) et son identifiant également (ce doit être
-    // un incrément par rapport au plus grand id connu de la liste d’infirmiers).
-    public void AddInfirmier(string prenom, string nom)
-    {
+    public void AddInfirmier(string prenom, string nom) {
         // Recherche de tous les infirmiers pour déterminer le plus grand ID
         XmlNodeList infirmiers = root.SelectNodes("//ci:infirmier", nsmgr);
 

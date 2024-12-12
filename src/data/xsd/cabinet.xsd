@@ -20,9 +20,17 @@
             <xs:selector xpath="ci:patients/ci:patient/ci:visite"/>
             <xs:field xpath="@intervenant"/>
         </xs:keyref>
-        
     </xs:element>
 
+    <!--  Élément racine adresse -->
+    <xs:element name="adresse" type="ci:Adresse"/>
+    
+    <!-- Élément racine infirmier -->
+    <xs:element name="infirmier" type="ci:Infirmier"/>
+    
+    <!-- Élément racine infirmiers (liste d'infirmiers) -->
+    <xs:element name="infirmiers" type="ci:Infirmiers"/>
+    
     <!-- Définition du type complexe "cabinet" -->
     <xs:complexType name="Cabinet">
         <xs:sequence>
@@ -93,7 +101,7 @@
             <xs:element name="prénom" type="ci:NomPatient" minOccurs="1" maxOccurs="1"/>
             <xs:element name="sexe" type="ci:Sexe" minOccurs="1" maxOccurs="1"/>
             <xs:element name="naissance" type="xs:date" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="numéroSS" type="ci:NIR" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="numéro" type="ci:NIR" minOccurs="1" maxOccurs="1"/>
             <xs:element name="adresse" type="ci:Adresse" minOccurs="1" maxOccurs="1"/>
             <xs:element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>

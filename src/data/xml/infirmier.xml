@@ -1,1 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<infirmier xmlns="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd" 
+         id="001">
+    
+    <nom>Fréchie</nom>
+    <prénom>Sarah</prénom>
+    <photo>frechie.png</photo>
+    
+</infirmier>
+    
+    

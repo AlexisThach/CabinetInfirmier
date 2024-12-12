@@ -29,7 +29,7 @@
         <ci:prénom><xsl:value-of select="ci:prénom"/></ci:prénom>
         <ci:sexe><xsl:value-of select="ci:sexe"/></ci:sexe>
         <ci:naissance><xsl:value-of select="ci:naissance"/></ci:naissance>
-        <ci:numéroSS><xsl:value-of select="ci:numéroSS"/></ci:numéroSS>
+        <ci:numéro><xsl:value-of select="ci:numéro"/></ci:numéro>
         <ci:adresse>
             <ci:étage><xsl:value-of select="ci:adresse/ci:étage"/></ci:étage>
             <ci:numéro><xsl:value-of select="ci:adresse/ci:numéro"/></ci:numéro>

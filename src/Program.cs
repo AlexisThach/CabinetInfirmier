@@ -6,6 +6,9 @@ AppContext.SetSwitch("Switch.System.Xml.AllowDefaultResolver", true);
 string pathXmlCabinet = "./src/data/xml/cabinet.xml";
 string pathXmlPatient = "./src/data/xml/patient.xml";
 string pathXmlActes = "./src/data/xml/actes.xml";
+string pathXmlAdresse = "./src/data/xml/adresse.xml";
+string pathXmlInfirmier = "./src/data/xml/infirmier.xml";
+string pathXmlInfirmiers = "./src/data/xml/infirmiers.xml";
 string URImedical = "http://www.univ-grenoble-alpes.fr/l3miage/medical";
 
 // Tests de validation de fichiers XMLSchema
@@ -35,7 +38,7 @@ Console.WriteLine("Adresse complète des patients : " + cabinet.HasAdresse(pathX
 Console.WriteLine("Adresse est complet pour Orouge : {0}", cabinet.HasAdresse(pathXmlCabinet, "//ci:cabinet/ci:patients/ci:patient[ci:nom='Orouge']/ci:adresse", URImedical));
 
 // 7.3.3 Modification de l’arbre DOM et de l’instance XML.
-
+/*
 cabinet.AddInfirmier("Jean", "Némard");
 cabinet.AddPatient(
     "Niskotch", 
@@ -50,4 +53,33 @@ cabinet.AddPatient(
     );
 cabinet.AddVisite("Niskotch", "001", "2016-10-01", "108");
 cabinet.Save(pathXmlCabinet); // Sauvegarde les modifications dans le fichier XML mais supprime les espaces...
+*/
+
+// 7.4 Sérialisation
+// 7.4.1 Sérialisations simples
+// Test de la sérialisation de la classe Adresse
+
+Adresse adresse;
+Infirmier inf;
+Infirmiers infirmiers;
+
+using (TextReader reader = new StreamReader(pathXmlAdresse)) { 
+    var xmlAdr = new XmlSerializer(typeof(Adresse)); 
+    adresse = (Adresse)xmlAdr.Deserialize(reader);
+    Console.WriteLine(adresse);    
+}
+
+// Test de la sérialisation de la classe Infirmier
+using (TextReader reader = new StreamReader(pathXmlInfirmier)) {
+     var xmlInf = new XmlSerializer(typeof(Infirmier));
+     inf = (Infirmier)xmlInf.Deserialize(reader);
+        Console.WriteLine(inf);
+}
+
+// Test de la sérialisation de la classe Infirmiers
+using (TextReader reader = new StreamReader(pathXmlInfirmiers)) {
+    var xmlInfs = new XmlSerializer(typeof(Infirmiers));
+    infirmiers = (Infirmiers)xmlInfs.Deserialize(reader);
+    Console.WriteLine(infirmiers);
+}
 

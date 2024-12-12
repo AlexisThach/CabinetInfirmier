@@ -42,7 +42,7 @@
             <td><xsl:value-of select="ci:prénom"/></td>
             <td><xsl:value-of select="ci:sexe"/></td>
             <td><xsl:value-of select="ci:naissance"/></td>
-            <td><xsl:value-of select="ci:numéroSS"/></td>
+            <td><xsl:value-of select="ci:numéro"/></td>
             <td>
                 <xsl:text>Étg n°</xsl:text>
                 <xsl:value-of select="ci:adresse/ci:étage"/>
