@@ -5,10 +5,22 @@
            targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/medical"
            xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
            elementFormDefault="qualified">
-    
+
     <!-- Élément racine qui est le cabinet avec le type "Cabinet"   -->
-    <xs:element name="cabinet" type="ci:Cabinet"/>
-    
+    <xs:element name="cabinet" type="ci:Cabinet">
+    <!-- Contrainte sur l'unicité des identifiants des infirmiers -->
+        <xs:key name="infIdUnique">
+            <xs:selector xpath="ci:infirmiers/ci:infirmier"/>
+            <xs:field xpath="@id"/>
+        </xs:key>
+        
+        <!-- Référence à un infirmier existant lors d'une visite -->
+        <xs:keyref name="intervenantRefInf" refer="ci:infIdUnique">
+            <xs:selector xpath="ci:patients/ci:patient/ci:visite"/>
+            <xs:field xpath="@intervenant"/>
+        </xs:keyref>
+    </xs:element>
+
     <!-- Type complexe pour le cabinet -->
     <xs:complexType name="Cabinet">
         <xs:sequence>
@@ -18,7 +30,7 @@
             <xs:element name="patients" type="ci:Patients" minOccurs="1"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    
+
     <!-- Type complexe pour l'adresse -->
     <xs:complexType name="Adresse">
         <xs:sequence>
@@ -70,10 +82,10 @@
             <xs:element name="naissance" type="xs:date" minOccurs="1"/>
             <xs:element name="numéroSS" type="ci:NIR" minOccurs="1"/>
             <xs:element name="adresse" type="ci:Adresse" minOccurs="1"/>
-            <xs:element name="visite" type="ci:Visite" minOccurs="1"/>
+            <xs:element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
-    
+
     <!-- Type complexe pour les visites -->
     <xs:complexType name="Visite">
         <xs:sequence>
@@ -82,38 +94,38 @@
         </xs:sequence>
         <!-- Attributs "date" pour la date de la visite et "intervenant" en option -->
         <xs:attribute name="date" type="xs:date" use="required"/>
-        <xs:attribute name="intervenant" type="xs:int" use="optional"/>
+        <xs:attribute name="intervenant" type="ci:Id"/>
     </xs:complexType>
-    
+
     <!-- Type complexe pour les actes -->
     <xs:complexType name="Acte">
         <xs:attribute name="id" type="xs:int" use="optional"/>
     </xs:complexType>
-    
+
     <!-- Le type Id restrictif qui doit contenir 3 caractères -->
     <xs:simpleType name="Id">
         <xs:restriction base="xs:string">
             <xs:pattern value="\d{3}"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Type NomPatient restrictif qui doit contenir que des lettres, peut avoir des accents, caractères spéciaux 
          tels que le tiret, apostrophe et aussi des espaces -->
     <xs:simpleType name="NomPatient">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[A-Za-zÀ-ÿ .'-]+"/> 
-            <xs:minLength value="1"/>  
+            <xs:pattern value="[A-Za-zÀ-ÿ .'-]+"/>
+            <xs:minLength value="1"/>
             <xs:maxLength value="50"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Type CodePostal est une restriction sur les codes postaux français -->
     <xs:simpleType name="CodePostal">
-        <xs:restriction base="xs:string">  
+        <xs:restriction base="xs:string">
             <!-- deux alternatives séparés par le pipe "|": 
                  1 - départements 01 à 09 
                  2 - départements 10 à 98 -->
-            <xs:pattern value="0[1-9]\d{3}|[1-9]\d{4}"/>      
+            <xs:pattern value="0[1-9]\d{3}|[1-9]\d{4}"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -123,14 +135,14 @@
             <xs:pattern value=".*\.(png|jpg)"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Le type simple NIR (numéro de sécurité sociale) -->
     <xs:simpleType name="NIR">
         <xs:restriction base="xs:string">
             <xs:pattern value="[12]\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-9]\d|2A|2B|99)\d{3}\d{3}\d{2}"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Le type simple Sexe avec deux valeurs "M" et "F" -->
     <xs:simpleType name="Sexe">
         <xs:restriction base="xs:string">
@@ -138,5 +150,5 @@
             <xs:enumeration value="F"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
 </xs:schema>
