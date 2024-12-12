@@ -50,13 +50,7 @@
     <xsl:template match="ci:visite">
         <ci:visite>
             <xsl:attribute name="date"><xsl:value-of select="@date"/></xsl:attribute>
-            <ci:intervenant>
-                
-                <xsl:variable name="destinedId" select="@intervenant"/>
-
-                <ci:nom><xsl:value-of select="//ci:infirmier[@id=$destinedId]/ci:nom"/></ci:nom>
-                <ci:prénom><xsl:value-of select="//ci:infirmier[@id=$destinedId]/ci:prénom"/></ci:prénom>
-            </ci:intervenant>
+            <xsl:attribute name="intervenant"><xsl:value-of select="@intervenant"/></xsl:attribute>
 
             <!-- Pour chaque acte on affiche sa description-->
             <xsl:apply-templates select="ci:acte"/>
@@ -74,8 +68,7 @@
         <xsl:variable name="actes" select="document('actes.xml', /)/act:ngap/act:actes/act:acte[@id=$idActe]"/>
         
         <!-- Affichage de la description pour chaque acte-->
-        <ci:acte><xsl:value-of select="$actes"/></ci:acte>
-
+        <ci:acte id="{$idActe}"><xsl:value-of select="$actes"/></ci:acte>
     </xsl:template>
 
 </xsl:stylesheet>

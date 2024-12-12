@@ -35,6 +35,7 @@ Console.WriteLine("Adresse complète des patients : " + cabinet.HasAdresse(pathX
 Console.WriteLine("Adresse est complet pour Orouge : {0}", cabinet.HasAdresse(pathXmlCabinet, "//ci:cabinet/ci:patients/ci:patient[ci:nom='Orouge']/ci:adresse", URImedical));
 
 // 7.3.3 Modification de l’arbre DOM et de l’instance XML.
+
 cabinet.AddInfirmier("Jean", "Némard");
 cabinet.AddPatient(
     "Niskotch", 
@@ -47,7 +48,6 @@ cabinet.AddPatient(
     "69000", 
     "Lyon"
     );
-
 cabinet.AddVisite("Niskotch", "001", "2016-10-01", "108");
 cabinet.Save(pathXmlCabinet); // Sauvegarde les modifications dans le fichier XML mais supprime les espaces...
 
