@@ -6,19 +6,20 @@
            targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/medical"
            elementFormDefault="qualified">
 
-    <!-- Définition de l'élément "patient" avec le type "Patient" -->
+    <!-- Élément racine qui est le "patient" avec le type "Patient" -->
     <xs:element name="patient" type="pa:Patient"/>
 
     <!-- Définition du type complexe "Patient" -->
     <xs:complexType name="Patient">
         <xs:sequence>
-            <xs:element name="nom" type="pa:NomPatient" minOccurs="1"/>
-            <xs:element name="prénom" type="pa:NomPatient" minOccurs="1"/>
-            <xs:element name="sexe" type="pa:Sexe" minOccurs="1"/>
-            <xs:element name="naissance" type="xs:date" minOccurs="1"/>
-            <xs:element name="numéroSS" type="pa:NIR" minOccurs="1"/>
-            <xs:element name="adresse" type="pa:Adresse" minOccurs="1"/>
-            <xs:element name="visite" type="pa:Visite" minOccurs="1" maxOccurs="unbounded"/>
+            <!-- Éléments représentant les attributs du patient -->
+            <xs:element name="nom" type="pa:NomPatient" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="prénom" type="pa:NomPatient" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="sexe" type="pa:Sexe" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="naissance" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="numéroSS" type="pa:NIR" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="adresse" type="pa:Adresse" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="visite" type="pa:Visite" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -48,16 +49,22 @@
             <xs:pattern value="[12]\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-9]\d|2A|2B|99)\d{3}\d{3}\d{2}"/>
         </xs:restriction>
     </xs:simpleType>
-
-
-    <!-- Type complexe pour l'adresse -->
+    
+    <!-- Définition du type complexe "Adresse" -->
     <xs:complexType name="Adresse">
         <xs:sequence>
-            <xs:element name="étage" type="xs:string" minOccurs="0"/>
-            <xs:element name="numéro" type="xs:string" minOccurs="0"/>
-            <xs:element name="rue" type="xs:string" minOccurs="1"/>
-            <xs:element name="codePostal" type="pa:CodePostal" minOccurs="1"/>
-            <xs:element name="ville" type="xs:string" minOccurs="1"/>
+            <xs:element name="étage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <!-- le numéro de rue doit être supérieur à 0 -->
+            <xs:element name="numéro" type="xs:string" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="rue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="codePostal" type="pa:CodePostal" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ville" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -73,22 +80,34 @@
     </xs:simpleType>
 
 
-    <!-- Type complexe pour les visites -->
+    <!-- Définition du type complexe "Visites" -->
     <xs:complexType name="Visite">
         <xs:sequence>
-            <xs:element name="intervenant" type="pa:Intervenant" minOccurs="1"/>
-            <xs:element name="acte" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+            <!-- Élément représentant la liste des actes de la visite -->
+            <xs:element name="acte" type="pa:Acte" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="date" type="xs:date" use="required"/>
+        <xs:attribute name="intervenant" type="pa:Id"/>
+    </xs:complexType>
+
+    <!-- Définition du type complexe "Acte" -->
+    <xs:complexType name="Acte">
+        <xs:attribute name="id" type="xs:int" use="required"/>
     </xs:complexType>
     
-    <!-- Type complexe "Intervenant" -->
+    <!-- Définition du type complexe "Intervenant" -->
     <xs:complexType name="Intervenant">
         <xs:sequence>
-            <xs:element name="nom" type="xs:string" minOccurs="1"/>
-            <xs:element name="prénom" type="xs:string" minOccurs="1"/>
+            <xs:element name="nom" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="prénom" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
-
     </xs:complexType>
+
+    <!-- Le type Id restrictif qui doit contenir 3 caractères -->
+    <xs:simpleType name="Id">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
