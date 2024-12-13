@@ -12,35 +12,26 @@ public class Adresse {
     
     // l'étage doit être un entier positif
     [XmlElement("étage")] public int _Etage {
-        set
-        {
-            _etage = value;
-            if (_etage < 0) _etage = int.Abs(value);
-        }
-        get { return _etage; }
+        set => _etage = value < 0 ? Math.Abs(value) : value;
+        get => _etage;
     }
     
     // le numéro doit être un entier positif
     [XmlElement("numéro")] public int _Numero {
-        set {
-            _numero = value;
-            if (_numero < 0)
-                _numero = int.Abs(value);
-        }
-        get { return _numero; }
+        set => _numero = value < 0 ? Math.Abs(value) : value;
+        get => _numero;
     }
     
     [XmlElement("rue")] public String _Rue { set; get; }
     
     // le code postal doit être un entier de 5 chiffres
     [XmlElement("codePostal")] public int _CodePostal {
-        set {
-            _codePostal = value;
-            if (_codePostal.ToString().Length != 5)
-                _codePostal = 26000;
-            else if (_codePostal < 0) {
-                _codePostal = int.Abs(value);
-            }
+        set
+        {
+            if (value.ToString().Length != 5 || value < 0)
+                _codePostal = 38000; 
+            else
+                _codePostal = value;
         }
         get { return _codePostal; }
     }

@@ -12,23 +12,25 @@ string pathXmlInfirmiers = "./src/data/xml/infirmiers.xml";
 string URImedical = "http://www.univ-grenoble-alpes.fr/l3miage/medical";
 
 // Tests de validation de fichiers XMLSchema
-//XMLUtils.ValidateXmlFileAsync("http://www.univ-grenoble-alpes.fr/l3miage/medical","./src/data/xsd/cabinet.xsd", pathXmlCabinet);
-//XMLUtils.ValidateXmlFileAsync("http://www.univ-grenoble-alpes.fr/l3miage/medical","./src/data/xsd/patient.xsd", pathXmlPatient);
+XMLUtils.ValidateXmlFileAsync(URImedical,"./src/data/xsd/cabinet.xsd", pathXmlCabinet);
+XMLUtils.ValidateXmlFileAsync(URImedical,"./src/data/xsd/patient.xsd", pathXmlPatient);
 
 // Tests de transformation XSLT
-//XMLUtils.XslTransform(pathXmlCabinet, "./src/data/xslt/cabinet.xsl", "./src/data/html/cabinet_test_cs.html");
-//XMLUtils.XslTransform(pathXmlPatient, "./src/data/xslt/patient_html.xsl", "./src/data/html/patient_test_cs.html");
+
+XMLUtils.XslTransform(pathXmlCabinet, "./src/data/xslt/cabinet.xsl", "./src/data/html/cabinet_test_cs.html");
+XMLUtils.XslTransform(pathXmlPatient, "./src/data/xslt/patient_html.xsl", "./src/data/html/patient_test_cs.html");
 
 // Tests Parser XMLReader
-/*
-Console.WriteLine("-------------------- XMLReader --------------------");
-CabinetXmlReader.AnalyseGlobal(pathXmlCabinet);
-CabinetXmlReader.GetTexteFromElements(pathXmlCabinet , "nom", "infirmiers");
-CabinetXmlReader.GetNbActes(pathXmlActes);
-*/
+
+//Console.WriteLine("-------------------- XMLReader --------------------");
+//CabinetXmlReader reader = new CabinetXmlReader();
+//reader.AnalyseGlobal(pathXmlCabinet); 
+//CabinetXmlReader.GetTexteFromElements(pathXmlCabinet , "nom", "infirmiers");
+//CabinetXmlReader.GetNbActes(pathXmlActes);
+
 
 // Test Parser DOM
-
+/*
 Console.WriteLine("-------------------- DOM --------------------");
 CabinetDOM cabinet = new CabinetDOM(pathXmlCabinet);
 Console.WriteLine("Nombre d'infirmiers : " + cabinet.GetNbInfirmiers());
@@ -38,7 +40,7 @@ Console.WriteLine("Adresse complète des patients : " + cabinet.HasAdresse(pathX
 Console.WriteLine("Adresse est complet pour Orouge : {0}", cabinet.HasAdresse(pathXmlCabinet, "//ci:cabinet/ci:patients/ci:patient[ci:nom='Orouge']/ci:adresse", URImedical));
 
 // 7.3.3 Modification de l’arbre DOM et de l’instance XML.
-/*
+
 cabinet.AddInfirmier("Jean", "Némard");
 cabinet.AddPatient(
     "Niskotch", 
@@ -55,31 +57,40 @@ cabinet.AddVisite("Niskotch", "001", "2016-10-01", "108");
 cabinet.Save(pathXmlCabinet); // Sauvegarde les modifications dans le fichier XML mais supprime les espaces...
 */
 
-// 7.4 Sérialisation
-// 7.4.1 Sérialisations simples
-// Test de la sérialisation de la classe Adresse
+/*
+Console.WriteLine("-------------------- SERIALISATION --------------------");
 
 Adresse adresse;
 Infirmier inf;
 Infirmiers infirmiers;
 
+// Test de desérialisation de la classe Adresse
+/*
 using (TextReader reader = new StreamReader(pathXmlAdresse)) { 
     var xmlAdr = new XmlSerializer(typeof(Adresse)); 
     adresse = (Adresse)xmlAdr.Deserialize(reader);
-    Console.WriteLine(adresse);    
 }
 
-// Test de la sérialisation de la classe Infirmier
+//Test de serialisation pour ensuite valider
+using (TextWriter writer = new StreamWriter(pathXmlAdresse)) {
+    var xmlAdr = new XmlSerializer(typeof(Adresse));
+    xmlAdr.Serialize(writer, adresse);
+}
+Console.WriteLine(adresse);
+
+*/
+/*
+// Test de sérialisation de la classe Infirmier
 using (TextReader reader = new StreamReader(pathXmlInfirmier)) {
      var xmlInf = new XmlSerializer(typeof(Infirmier));
      inf = (Infirmier)xmlInf.Deserialize(reader);
         Console.WriteLine(inf);
 }
 
-// Test de la sérialisation de la classe Infirmiers
+// Test de sérialisation de la classe Infirmiers
 using (TextReader reader = new StreamReader(pathXmlInfirmiers)) {
     var xmlInfs = new XmlSerializer(typeof(Infirmiers));
     infirmiers = (Infirmiers)xmlInfs.Deserialize(reader);
     Console.WriteLine(infirmiers);
 }
-
+*/
