@@ -64,8 +64,8 @@
     <xsl:template match="ci:visite">
         <xsl:value-of select="@date"/>
         <xsl:value-of select="ci:acte"/>
-        <xsl:value-of select="@id"/>
-        <xsl:text> - Infirmier: </xsl:text>
+        <xsl:text> par l'infirmier: </xsl:text>
         <xsl:value-of select="@intervenant"/>
+
     </xsl:template>
 </xsl:stylesheet>

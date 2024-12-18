@@ -42,7 +42,7 @@ public class CabinetXmlReader {
 
     // Méthode qui prend en paramètre le chemin d’un fichier XML, le nom d’un élément et l'élément parent et qui retourne
     // une liste de chaînes de caractères contenant le texte des éléments de ce nom.
-    public static void GetTexteFromElements(string filepath, string element, string parent) {
+    public void GetTexteFromElements(string filepath, string element, string parent) {
         var settings = new XmlReaderSettings();
         using var reader = XmlReader.Create(filepath, settings);
         reader.MoveToContent();
@@ -55,7 +55,7 @@ public class CabinetXmlReader {
                        estParent = true; 
                     }
                     if (estParent && reader.Name == element) {
-                        Console.Write("Element {0} - ", reader.Name);
+                        Console.Write("Element: {0} - ", reader.Name);
                         if (reader.Read() && reader.NodeType == XmlNodeType.Text) {
                             Console.WriteLine("Texte: {0}", reader.Value);
                         }
@@ -72,7 +72,7 @@ public class CabinetXmlReader {
     } 
     
     // Méthode qui prend en paramètre le chemin d’un fichier XML et qui affiche le nombre d’actes différents à effectuer.
-    public static void GetNbActes(string filepath) {
+    public void GetNbActes(string filepath) {
         var settings = new XmlReaderSettings();
         using var reader = XmlReader.Create(filepath, settings);
         reader.MoveToContent();

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<adresse xmlns="http://www.univ-grenoble-alpes.fr/l3miage/medical" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-           xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
-    
-    <étage>3</étage>
-    <numéro>190</numéro>
-    <rue>rue Louis Pasteur</rue>
-    <codePostal>26000</codePostal>
-    <ville>Valence</ville>
+<adresse xmlns="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
+  <étage>3</étage>
+  <numéro>190</numéro>
+  <rue>rue Louis Pasteur</rue>
+  <codePostal>26000</codePostal>
+  <ville>Valence</ville>
 </adresse>

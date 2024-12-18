@@ -8,15 +8,9 @@
     <!-- Élément racine qui est le cabinet avec le type "Cabinet"   -->
     <xs:element name="cabinet" type="ci:Cabinet">
         
-    <!-- Contrainte sur l'unicité des identifiants des infirmiers -->
-        <xs:key name="infIdUnique">
-            <xs:selector xpath="ci:infirmiers/ci:infirmier"/>
-            <xs:field xpath="@id"/>
-        </xs:key>
-        
         <!-- Référence à un infirmier existant lors d'une visite -->
-        <xs:keyref name="intervenantRefInf" refer="ci:infIdUnique">
-            <xs:selector xpath="ci:patients/ci:patient/ci:visite"/>
+        <xs:keyref name="refExist" refer="ci:infIdUnique">
+            <xs:selector xpath=".//ci:patient/ci:visite"/>
             <xs:field xpath="@intervenant"/>
         </xs:keyref>
     </xs:element>
@@ -38,7 +32,13 @@
             <!-- Unique adresse de cabinet par cabinet -->
             <xs:element name="adresse" type="ci:Adresse" minOccurs="1" maxOccurs="1"></xs:element>
             <!-- Unique liste d'infirmier par cabinet -->
-            <xs:element name="infirmiers" type="ci:Infirmiers" minOccurs="1" maxOccurs="1"></xs:element>
+            <!-- L'id d'un patient se doit d'être unique -->
+            <xs:element name="infirmiers" type="ci:Infirmiers" minOccurs="1" maxOccurs="1">
+                <xs:unique name="infIdUnique">
+                    <xs:selector xpath="ci:infirmier"/>
+                    <xs:field xpath="@id"/>
+                </xs:unique>
+            </xs:element>
             <!-- Unique liste de patient par cabinet-->
             <xs:element name="patients" type="ci:Patients" minOccurs="1" maxOccurs="1"></xs:element>
         </xs:sequence>
@@ -113,7 +113,7 @@
             <xs:element name="acte" type="ci:Acte" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="date" type="xs:date" use="required"/>
-        <xs:attribute name="intervenant" type="ci:Id"/>
+        <xs:attribute name="intervenant" type="ci:Id" use="optional"/>
     </xs:complexType>
 
     <!-- Définition du type complexe "Acte" -->

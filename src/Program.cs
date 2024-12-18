@@ -11,27 +11,26 @@ string pathXmlInfirmier = "./src/data/xml/infirmier.xml";
 string pathXmlInfirmiers = "./src/data/xml/infirmiers.xml";
 string URImedical = "http://www.univ-grenoble-alpes.fr/l3miage/medical";
 
-// Tests de validation de fichiers XMLSchema
+// Tests de validation de fichiers XMLSchema 
 XMLUtils.ValidateXmlFileAsync(URImedical,"./src/data/xsd/cabinet.xsd", pathXmlCabinet);
 XMLUtils.ValidateXmlFileAsync(URImedical,"./src/data/xsd/patient.xsd", pathXmlPatient);
 
 // Tests de transformation XSLT
-
 XMLUtils.XslTransform(pathXmlCabinet, "./src/data/xslt/cabinet.xsl", "./src/data/html/cabinet_test_cs.html");
 XMLUtils.XslTransform(pathXmlPatient, "./src/data/xslt/patient_html.xsl", "./src/data/html/patient_test_cs.html");
 
-// Tests Parser XMLReader
+Console.WriteLine("-------------------- XMLReader -------------------------------");
+CabinetXmlReader read = new CabinetXmlReader();
+read.AnalyseGlobal(pathXmlCabinet); 
+Console.WriteLine("--------------------------------------------------------------");
+read.GetTexteFromElements(pathXmlCabinet , "nom", "infirmiers");
+Console.WriteLine("--------------------------------------------------------------");
+read.GetTexteFromElements(pathXmlCabinet , "nom", "patients");
+Console.WriteLine("--------------------------------------------------------------");
+read.GetNbActes(pathXmlActes);
 
-//Console.WriteLine("-------------------- XMLReader --------------------");
-//CabinetXmlReader reader = new CabinetXmlReader();
-//reader.AnalyseGlobal(pathXmlCabinet); 
-//CabinetXmlReader.GetTexteFromElements(pathXmlCabinet , "nom", "infirmiers");
-//CabinetXmlReader.GetNbActes(pathXmlActes);
-
-
-// Test Parser DOM
 /*
-Console.WriteLine("-------------------- DOM --------------------");
+Console.WriteLine("-------------------- DOM -------------------------------------");
 CabinetDOM cabinet = new CabinetDOM(pathXmlCabinet);
 Console.WriteLine("Nombre d'infirmiers : " + cabinet.GetNbInfirmiers());
 Console.WriteLine("Nombre de patients : " + cabinet.GetNbPatients());
@@ -57,29 +56,25 @@ cabinet.AddVisite("Niskotch", "001", "2016-10-01", "108");
 cabinet.Save(pathXmlCabinet); // Sauvegarde les modifications dans le fichier XML mais supprime les espaces...
 */
 
-/*
-Console.WriteLine("-------------------- SERIALISATION --------------------");
 
+Console.WriteLine("-------------------- SERIALISATION ----------------------------------------");
 Adresse adresse;
 Infirmier inf;
 Infirmiers infirmiers;
 
 // Test de desérialisation de la classe Adresse
-/*
-using (TextReader reader = new StreamReader(pathXmlAdresse)) { 
+using (StreamReader reader = new StreamReader(pathXmlAdresse)) { 
     var xmlAdr = new XmlSerializer(typeof(Adresse)); 
     adresse = (Adresse)xmlAdr.Deserialize(reader);
 }
 
-//Test de serialisation pour ensuite valider
-using (TextWriter writer = new StreamWriter(pathXmlAdresse)) {
+//Test de serialisation de la classe Adresse
+using (StreamWriter writer = new StreamWriter(pathXmlAdresse)) {
     var xmlAdr = new XmlSerializer(typeof(Adresse));
     xmlAdr.Serialize(writer, adresse);
 }
-Console.WriteLine(adresse);
+Console.WriteLine(adresse); 
 
-*/
-/*
 // Test de sérialisation de la classe Infirmier
 using (TextReader reader = new StreamReader(pathXmlInfirmier)) {
      var xmlInf = new XmlSerializer(typeof(Infirmier));
@@ -93,4 +88,4 @@ using (TextReader reader = new StreamReader(pathXmlInfirmiers)) {
     infirmiers = (Infirmiers)xmlInfs.Deserialize(reader);
     Console.WriteLine(infirmiers);
 }
-*/
+

@@ -50,8 +50,9 @@
     <xsl:template match="ci:visite">
         <ci:visite>
             <xsl:attribute name="date"><xsl:value-of select="@date"/></xsl:attribute>
-            <xsl:attribute name="intervenant"><xsl:value-of select="@intervenant"/></xsl:attribute>
-
+            <xsl:attribute name="intervenant">
+                <xsl:value-of select="./@intervenant"/>
+            </xsl:attribute>
             <!-- Pour chaque acte on affiche sa description-->
             <xsl:apply-templates select="ci:acte"/>
         </ci:visite>

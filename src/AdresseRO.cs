@@ -41,11 +41,11 @@ public class AdresseRO {
     public override string ToString() {
         var s = String.Empty;
         s += "Adresse : \n";
-        s += "\t* Etage : " + _Etage;
-        s += "\n \t* Numero : "+_Numero; 
-        s += "\n \t* Rue : " + _Rue;
-        s += "\n \t* CodePostal : " + _CodePostal;
-        s += "\n \t* Ville : " + _Ville;
+        s += "\tEtage : " + _Etage;
+        s += "\n \tNumero : "+_Numero; 
+        s += "\n \tRue : " + _Rue;
+        s += "\n \tCodePostal : " + _CodePostal;
+        s += "\n \tVille : " + _Ville;
         return s;
     }
     
