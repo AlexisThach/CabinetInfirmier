@@ -75,12 +75,12 @@ Enum Sexe {
 }
 
 ' Relations entre les différentes classes
-Cabinet *-- Infirmiers : a 
-Cabinet *-- Patients : soigne
-Cabinet *--o Adresse 
+Cabinet *-- Infirmiers 
+Cabinet *-- Patients 
+Cabinet *-- Adresse 
 Adresse *-- CodePostal
-Patients *-- Adresse : habite à
-Patients *-- Visite : a eu
+Patients *-- Adresse 
+Patients *-- Visite 
 Patients *-- NIR
 Patients *-- Sexe
 Patients *-- NomPatient

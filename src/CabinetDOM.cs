@@ -123,7 +123,7 @@ public class CabinetDOM {
         naissanceNode.InnerText = naissance;
         newPatient.AppendChild(naissanceNode);
 
-        XmlElement numeroSSNode = doc.CreateElement("numéroSS", nsmgr.LookupNamespace("ci"));
+        XmlElement numeroSSNode = doc.CreateElement("numéro", nsmgr.LookupNamespace("ci"));
         numeroSSNode.InnerText = numeroSS;
         newPatient.AppendChild(numeroSSNode);
 
