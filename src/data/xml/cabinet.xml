@@ -51,6 +51,11 @@
       <prénom>Jean</prénom>
       <photo>jean.png</photo>
     </infirmier>
+    <infirmier id="009">
+      <nom>Némard</nom>
+      <prénom>Jean</prénom>
+      <photo>jean.png</photo>
+    </infirmier>
   </infirmiers>
   <!--Liste des patients-->
   <patients>
@@ -124,6 +129,25 @@
         <acte id="111" />
       </visite>
     </patient>
-  <patient><nom>Niskotch</nom><prénom>Nicole</prénom><sexe>F</sexe><naissance>2002-06-20</naissance><numéro>202062602305206</numéro><adresse><numéro>13</numéro><rue>rue Pasteur</rue><codePostal>69000</codePostal><ville>Lyon</ville></adresse><visite date="2016-10-01" intervenant="001"><acte id="108" /></visite></patient>
+    <patient>
+      <nom>Niskotch</nom>
+      <prénom>Nicole</prénom>
+      <sexe>F</sexe>
+      <naissance>2002-06-20</naissance>
+      <numéro>202062602305206</numéro>
+      <adresse>
+        <numéro>13</numéro>
+        <rue>rue Pasteur</rue>
+        <codePostal>69000</codePostal>
+        <ville>Lyon</ville>
+      </adresse>
+      <visite date="2016-10-01" intervenant="001">
+        <acte id="108" />
+      </visite>
+      <visite date="2016-10-01" intervenant="001">
+        <acte id="108" />
+      </visite>
+    </patient>
+  <patient><nom>Niskotch</nom><prénom>Nicole</prénom><sexe>F</sexe><naissance>2002-06-20</naissance><numéro>202062602305206</numéro><adresse><numéro>13</numéro><rue>rue Pasteur</rue><codePostal>69000</codePostal><ville>Lyon</ville></adresse></patient>
 </patients>
 </cabinet>
